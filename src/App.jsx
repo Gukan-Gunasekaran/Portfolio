@@ -1,4 +1,6 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
+import guku from "./guku.jpeg";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -9,6 +11,26 @@ function App() {
     });
 
     setMenuOpen(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_qee3v1o",
+        "template_c63x75i",
+        e.target,
+        "uPAIqz0sdXaQkcAia"
+      )
+      .then(() => {
+        alert("Message sent successfully!");
+        e.target.reset();
+      })
+      .catch((error) => {
+        console.error("EmailJS Error:", error);
+        alert("Failed to send message. Please try again.");
+      });
   };
 
   const skills = [
@@ -155,16 +177,17 @@ function App() {
       <section id="home" className="hero-section">
 
         <div className="container">
+
           <div className="row align-items-center min-vh-100">
 
             <div className="col-lg-7">
 
-              <p className="hero-small-text">
+              <p className="hero-small-text mb-2">
                 Hello, I'm
               </p>
 
               <h1>
-                Gukan <span>G</span>
+                Gukan <span className="me-4">G</span>
               </h1>
 
               <h2>
@@ -199,15 +222,24 @@ function App() {
 
               <div className="social-icons mt-4">
 
-                <a href="https://github.com/Gukan-Gunasekaran" aria-label="GitHub">
+                <a
+                  href="https://github.com/Gukan-Gunasekaran"
+                  aria-label="GitHub"
+                >
                   <i className="bi bi-github"></i>
                 </a>
 
-                <a href="https://www.linkedin.com/in/guna-guku/" aria-label="LinkedIn">
+                <a
+                  href="https://www.linkedin.com/in/guna-guku/"
+                  aria-label="LinkedIn"
+                >
                   <i className="bi bi-linkedin"></i>
                 </a>
 
-                <a href="mailto:gunaguku@gmail.com" aria-label="Email">
+                <a
+                  href="mailto:gunaguku@gmail.com"
+                  aria-label="Email"
+                >
                   <i className="bi bi-envelope"></i>
                 </a>
 
@@ -234,6 +266,7 @@ function App() {
             </div>
 
           </div>
+
         </div>
 
       </section>
@@ -284,27 +317,36 @@ function App() {
               <div className="about-card">
 
                 <div className="about-item">
+
                   <i className="bi bi-code-square"></i>
+
                   <div>
                     <strong>Frontend</strong>
                     <p>React, JavaScript, Bootstrap</p>
                   </div>
+
                 </div>
 
                 <div className="about-item">
+
                   <i className="bi bi-server"></i>
+
                   <div>
                     <strong>Backend</strong>
                     <p>Java, Spring Boot, REST API</p>
                   </div>
+
                 </div>
 
                 <div className="about-item">
+
                   <i className="bi bi-database"></i>
+
                   <div>
                     <strong>Database</strong>
                     <p>MySQL, SQL</p>
                   </div>
+
                 </div>
 
               </div>
@@ -336,7 +378,10 @@ function App() {
 
             {skills.map((skill, index) => (
 
-              <div className="col-md-6 col-lg-4" key={index}>
+              <div
+                className="col-md-6 col-lg-4"
+                key={index}
+              >
 
                 <div className="skill-card">
 
@@ -377,7 +422,10 @@ function App() {
 
             {projects.map((project, index) => (
 
-              <div className="col-lg-4" key={index}>
+              <div
+                className="col-lg-4"
+                key={index}
+              >
 
                 <div className="project-card">
 
@@ -442,7 +490,9 @@ function App() {
 
             <div>
 
-              <h3>Masters of Computer Applications</h3>
+              <h3>
+                Masters of Computer Applications
+              </h3>
 
               <h5>
                 University College of Engineering ,BIT CAMPUS
@@ -509,10 +559,7 @@ function App() {
 
               <form
                 className="contact-form"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  alert("Message submitted!");
-                }}
+                onSubmit={handleSubmit}
               >
 
                 <div className="row">
@@ -523,6 +570,7 @@ function App() {
 
                     <input
                       type="text"
+                      name="name"
                       className="form-control"
                       placeholder="Your name"
                       required
@@ -536,6 +584,7 @@ function App() {
 
                     <input
                       type="email"
+                      name="email"
                       className="form-control"
                       placeholder="Your email"
                       required
@@ -551,6 +600,7 @@ function App() {
 
                   <input
                     type="text"
+                    name="title"
                     className="form-control"
                     placeholder="Subject"
                     required
@@ -563,6 +613,7 @@ function App() {
                   <label>Message</label>
 
                   <textarea
+                    name="message"
                     className="form-control"
                     rows="5"
                     placeholder="Your message"
