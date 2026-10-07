@@ -76,12 +76,12 @@ function App() {
       demo: "#",
     },
     {
-      title: "Developer Management System",
+      title: "Earthmovers application",
       description:
         "A web application for managing users, projects and administrative operations.",
       technologies: ["React", "Spring Boot", "MySQL"],
       github: "#",
-      demo: "#",
+      demo: "https://andavar-earth-movers.vercel.app/",
     },
     {
       title: "Portfolio Website",
